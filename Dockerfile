@@ -1,5 +1,5 @@
 FROM progrium/busybox
-RUN opkg-install curl ca-certificates bash gzip zlib
+RUN opkg-install curl ca-certificates bash gzip zlib python
 
 # JAVA
 ENV JAVA_HOME /usr/jdk1.8.0_31

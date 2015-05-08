@@ -1,5 +1,10 @@
-FROM progrium/busybox
-RUN opkg-install curl ca-certificates bash gzip zlib python
+FROM debian:jessie
+MAINTAINER Getty Images "https://github.com/gettyimages"
+
+RUN apt-get update \
+  && apt-get install -y curl net-tools unzip python \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # JAVA
 ENV JAVA_HOME /usr/jdk1.8.0_31

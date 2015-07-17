@@ -14,6 +14,11 @@ The SparkUI will be running at `http://${YOUR_DOCKER_HOST}:8080` with one worker
     docker exec -it dockerspark_master_1 /bin/bash
     /usr/spark/bin/spark-shell --master spark://master:7077
 
+To run `SparkPi`, exec into a container:
+
+    docker exec -it dockerspark_master_1 /bin/bash
+    MASTER=spark://master:7077 /usr/spark/bin/run-example SparkPi 10
+
 ## license
 
 MIT

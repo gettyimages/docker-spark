@@ -42,7 +42,15 @@ worker:
     - 7016
     - 8881
   ports:
-    - 8081:8081
+    - 8081
   volumes:
     - ./conf/worker:/conf
     - ./data:/tmp/data
+
+task:
+  image: gettyimages/spark
+  command: /usr/spark/bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://master:7077 /tmp/data/examples.jar 10000
+  links:
+    - master
+  volumes:
+    - ./jars:/tmp/data

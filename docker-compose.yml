@@ -4,6 +4,7 @@ master:
   hostname: master
   environment:
     SPARK_CONF_DIR: /conf
+    MASTER: spark://master:7077
   expose:
     - 7001
     - 7002

@@ -18,13 +18,13 @@ RUN curl -sL --retry 3 --insecure \
   && rm -rf $JAVA_HOME/man
 
 # SPARK
-ENV SPARK_VERSION 1.5.2
+ENV SPARK_VERSION 1.6.0
 ENV HADOOP_VERSION 2.6
-ENV SPARK_PACKAGE $SPARK_VERSION-bin-hadoop$HADOOP_VERSION
-ENV SPARK_HOME /usr/spark-$SPARK_PACKAGE
+ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION
+ENV SPARK_HOME /usr/$SPARK_PACKAGE
 ENV PATH $PATH:$SPARK_HOME/bin
 RUN curl -sL --retry 3 \
-  "http://mirrors.ibiblio.org/apache/spark/spark-$SPARK_VERSION/spark-$SPARK_PACKAGE.tgz" \
+  "http://d3kbcqa49mib13.cloudfront.net/$SPARK_PACKAGE.tgz" \
   | gunzip \
   | tar x -C /usr/ \
   && ln -s $SPARK_HOME /usr/spark

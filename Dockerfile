@@ -2,7 +2,11 @@ FROM debian:jessie
 MAINTAINER Getty Images "https://github.com/gettyimages"
 
 RUN apt-get update \
-  && apt-get install -y curl net-tools unzip python \
+  && apt-get install -y curl net-tools unzip \
+    python3 python3-setuptools \
+    python  python-setuptools \
+  && easy_install3 pip py4j \
+  && easy_install  pip py4j \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -35,4 +39,5 @@ RUN curl -sL --retry 3 "http://central.maven.org/maven2/org/apache/hadoop/hadoop
  && curl -sL --retry 3 "http://central.maven.org/maven2/com/google/collections/google-collections/1.0/google-collections-1.0.jar" -o $SPARK_HOME/lib/google-collections-1.0.jar \
  && curl -sL --retry 3 "http://central.maven.org/maven2/joda-time/joda-time/2.8.2/joda-time-2.8.2.jar" -o $SPARK_HOME/lib/joda-time-2.8.2.jar
 
-CMD /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master
+WORKDIR $SPARK_HOME
+CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]

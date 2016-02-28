@@ -3,8 +3,9 @@ master:
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
   hostname: master
   environment:
-    SPARK_CONF_DIR: /conf
     MASTER: spark://master:7077
+    SPARK_CONF_DIR: /conf
+    PYSPARK_PYTHON: python3
   expose:
     - 7001
     - 7002
@@ -33,6 +34,7 @@ worker:
     SPARK_WORKER_MEMORY: 1g
     SPARK_WORKER_PORT: 8881
     SPARK_WORKER_WEBUI_PORT: 8081
+    PYSPARK_PYTHON: python3
   links:
     - master
   expose:

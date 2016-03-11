@@ -1,11 +1,10 @@
 master:
   image: gettyimages/spark
-  command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
+  command: bin/spark-class org.apache.spark.deploy.master.Master -h master
   hostname: master
   environment:
     MASTER: spark://master:7077
     SPARK_CONF_DIR: /conf
-    PYSPARK_PYTHON: python3
   expose:
     - 7001
     - 7002
@@ -26,7 +25,7 @@ master:
 
 worker:
   image: gettyimages/spark
-  command: /usr/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+  command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
   hostname: worker
   environment:
     SPARK_CONF_DIR: /conf
@@ -34,7 +33,6 @@ worker:
     SPARK_WORKER_MEMORY: 1g
     SPARK_WORKER_PORT: 8881
     SPARK_WORKER_WEBUI_PORT: 8081
-    PYSPARK_PYTHON: python3
   links:
     - master
   expose:

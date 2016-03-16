@@ -20,7 +20,7 @@ To do a thing with Pyspark
 
 ## docker-compose example
 
-To create a standalone cluster with [docker-compose](http://docs.docker.com/compose):
+To create a simplistic standalone cluster with [docker-compose](http://docs.docker.com/compose):
 
     docker-compose up
 

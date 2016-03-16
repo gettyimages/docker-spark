@@ -50,7 +50,7 @@ RUN curl -sL --retry 3 \
  && rm -rf $HADOOP_HOME/share/doc
 
 # SPARK
-ENV SPARK_VERSION 1.6.0
+ENV SPARK_VERSION 1.6.1
 ENV SPARK_PACKAGE spark-$SPARK_VERSION-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-$SPARK_VERSION
 ENV PYSPARK_PYTHON python3

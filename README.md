@@ -7,16 +7,16 @@ A `debian:jessie` based [Spark](http://spark.apache.org) container. Use it in a 
 
 To run `SparkPi`, run the image with Docker:
 
-    docker run --rm -it gettyimages/spark bin/run-example SparkPi 10
+    docker run --rm -it -p 4040:4040 gettyimages/spark bin/run-example SparkPi 10
 
 To start `spark-shell` with your AWS credentials:
 
-    docker run --rm -it -e "AWS_ACCESS_KEY_ID=YOURKEY" -e "AWS_SECRET_ACCESS_KEY=YOURSECRET" gettyimages/spark bin/spark-shell
+    docker run --rm -it -e "AWS_ACCESS_KEY_ID=YOURKEY" -e "AWS_SECRET_ACCESS_KEY=YOURSECRET" -p 4040:4040 gettyimages/spark bin/spark-shell
 
 To do a thing with Pyspark
 
     echo "import pyspark\nprint(pyspark.SparkContext().parallelize(range(0, 10)).count())" > count.py
-    docker run --rm -it -v $(pwd)/count.py:/count.py gettyimages/spark bin/pyspark /count.py
+    docker run --rm -it -p 4040:4040 -v $(pwd)/count.py:/count.py gettyimages/spark bin/pyspark /count.py
 
 ## docker-compose example
 

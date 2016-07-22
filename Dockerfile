@@ -27,6 +27,7 @@ RUN apt-get update \
 # http://blog.stuart.axelbrooke.com/python-3-on-spark-return-of-the-pythonhashseed
 ENV PYTHONHASHSEED 0
 ENV PYTHONIOENCODING UTF-8
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 # JAVA
 ARG JAVA_MAJOR_VERSION=8

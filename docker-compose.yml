@@ -5,6 +5,7 @@ master:
   environment:
     MASTER: spark://master:7077
     SPARK_CONF_DIR: /conf
+    SPARK_PUBLIC_DNS: localhost
   expose:
     - 7001
     - 7002
@@ -33,6 +34,7 @@ worker:
     SPARK_WORKER_MEMORY: 1g
     SPARK_WORKER_PORT: 8881
     SPARK_WORKER_WEBUI_PORT: 8081
+    SPARK_PUBLIC_DNS: localhost
   links:
     - master
   expose:

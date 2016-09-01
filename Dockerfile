@@ -53,7 +53,8 @@ RUN curl -sL --retry 3 \
   "http://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz" \
   | gunzip \
   | tar -x -C /usr/ \
- && rm -rf $HADOOP_HOME/share/doc
+ && rm -rf $HADOOP_HOME/share/doc \
+ && chown -R root:root $HADOOP_HOME
 
 # SPARK
 ENV SPARK_VERSION 2.0.0
@@ -65,7 +66,8 @@ RUN curl -sL --retry 3 \
   "http://d3kbcqa49mib13.cloudfront.net/${SPARK_PACKAGE}.tgz" \
   | gunzip \
   | tar x -C /usr/ \
-  && mv /usr/$SPARK_PACKAGE $SPARK_HOME
+ && mv /usr/$SPARK_PACKAGE $SPARK_HOME \
+ && chown -R root:root $SPARK_HOME
 
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]

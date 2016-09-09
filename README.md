@@ -16,7 +16,7 @@ To start `spark-shell` with your AWS credentials:
 To do a thing with Pyspark
 
     echo "import pyspark\nprint(pyspark.SparkContext().parallelize(range(0, 10)).count())" > count.py
-    docker run --rm -it -p 4040:4040 -v $(pwd)/count.py:/count.py gettyimages/spark bin/pyspark /count.py
+    docker run --rm -it -p 4040:4040 -v $(pwd)/count.py:/count.py gettyimages/spark bin/spark-submit /count.py
 
 ## docker-compose example
 

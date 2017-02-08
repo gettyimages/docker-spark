@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Getty Images "https://github.com/gettyimages"
+MAINTAINER Semantive "https://github.com/semantive"
 
 RUN apt-get update \
  && apt-get install -y locales \

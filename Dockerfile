@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Getty Images "https://github.com/gettyimages"
 
 RUN apt-get update \

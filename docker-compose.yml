@@ -43,7 +43,7 @@ worker:
     - 7015
     - 8881
   ports:
-    - 8081:8081
+    - 8081
   volumes:
     - ./conf/worker:/conf
     - ./data:/tmp/data

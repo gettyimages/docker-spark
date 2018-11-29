@@ -1,3 +1,8 @@
 *.tsv
 *.csv
 *.py
+/logs
+# Ignore the content of the spark-events (logs)
+# But keep the directory thanks to .gitkeep
+/spark-events
+!/**/.gitkeep

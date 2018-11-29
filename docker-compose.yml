@@ -47,3 +47,16 @@ worker:
   volumes:
     - ./conf/worker:/conf
     - ./data:/tmp/data
+
+history:
+  image: gettyimages/spark
+  command: bin/spark-class org.apache.spark.deploy.history.HistoryServer
+  hostname: history
+  environment:
+    SPARK_PUBLIC_DNS: localhost
+  expose:
+    - 18080
+  ports:
+    - 18080:18080
+  volumes:
+    - ./spark-events:/tmp/spark-events

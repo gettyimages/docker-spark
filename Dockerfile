@@ -31,14 +31,14 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 # JAVA
 ARG JAVA_MAJOR_VERSION=8
-ARG JAVA_UPDATE_VERSION=192
-ARG JAVA_BUILD_NUMBER=12
+ARG JAVA_UPDATE_VERSION=202
+ARG JAVA_BUILD_NUMBER=08
 ENV JAVA_HOME /usr/jdk1.${JAVA_MAJOR_VERSION}.0_${JAVA_UPDATE_VERSION}
 
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN curl -sL --retry 3 --insecure \
   --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-  "http://download.oracle.com/otn-pub/java/jdk/${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-b${JAVA_BUILD_NUMBER}/750e1c8617c5452694857ad95c3ee230/server-jre-${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-linux-x64.tar.gz" \
+  "http://download.oracle.com/otn-pub/java/jdk/${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-b${JAVA_BUILD_NUMBER}/1961070e4c9b4e26a04e7f5a083f551e/server-jre-${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-linux-x64.tar.gz" \
   | gunzip \
   | tar x -C /usr/ \
   && ln -s $JAVA_HOME /usr/java \

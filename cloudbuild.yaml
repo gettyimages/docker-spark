@@ -1,0 +1,24 @@
+# https://cloud.google.com/cloud-build/docs/speeding-up-builds
+# https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values
+substitutions:
+  _IMAGE: 'gcr.io/whiteblock/spark'
+timeout: '45m'
+steps:
+# allow these steps to fail, they try to pull cache first
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull $_IMAGE:$BRANCH_NAME || true' ]
+# build final docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+            'build',
+            '-t', '$_IMAGE:$BRANCH_NAME',
+            '-t', '$_IMAGE:$COMMIT_SHA',
+            '--cache-from', '$_IMAGE:$BRANCH_NAME',
+            '.'
+        ]
+# push docker image tag(s) one branch, one immutable
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', '$_IMAGE:$COMMIT_SHA' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', '$_IMAGE:$BRANCH_NAME' ]

@@ -30,19 +30,9 @@ ENV PYTHONIOENCODING UTF-8
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 # JAVA
-ARG JAVA_MAJOR_VERSION=12
-ARG JAVA_UPDATE_VERSION=0.1
-ARG JAVA_BUILD_NUMBER=12
-ENV JAVA_HOME /usr/jdk-${JAVA_MAJOR_VERSION}.${JAVA_UPDATE_VERSION}
-
-ENV PATH $PATH:$JAVA_HOME/bin
-RUN curl -sL --retry 3 --insecure \
-  --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-  "http://download.oracle.com/otn-pub/java/jdk/${JAVA_MAJOR_VERSION}.${JAVA_UPDATE_VERSION}+${JAVA_BUILD_NUMBER}/69cfe15208a647278a19ef0990eea691/jdk-${JAVA_MAJOR_VERSION}.${JAVA_UPDATE_VERSION}_linux-x64_bin.tar.gz" \
-  | gunzip \
-  | tar x -C /usr/ \
-  && ln -s $JAVA_HOME /usr/java \
-  && rm -rf $JAVA_HOME/man
+RUN apt-get update \
+ && apt-get install -y openjdk-8-jre \
+ && apt-get clean 
 
 # HADOOP
 ENV HADOOP_VERSION 3.0.0

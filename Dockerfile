@@ -32,7 +32,8 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 # JAVA
 RUN apt-get update \
  && apt-get install -y openjdk-8-jre \
- && apt-get clean 
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # HADOOP
 ENV HADOOP_VERSION 3.0.0

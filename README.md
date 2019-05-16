@@ -26,12 +26,12 @@ To create a simplistic standalone cluster with [docker-compose](http://docs.dock
 
 The SparkUI will be running at `http://${YOUR_DOCKER_HOST}:8080` with one worker listed. To run `pyspark`, exec into a container:
 
-    docker exec -it dockerspark_master_1 /bin/bash
+    docker exec -it docker-spark_master_1 /bin/bash
     bin/pyspark
 
 To run `SparkPi`, exec into a container:
 
-    docker exec -it dockerspark_master_1 /bin/bash
+    docker exec -it docker-spark_master_1 /bin/bash
     bin/run-example SparkPi 10
 
 ## license

@@ -49,3 +49,13 @@ services:
     volumes:
       - ./conf/worker:/conf
       - ./data:/tmp/data
+
+  zeppelin:
+    image: apache/zeppelin:0.8.1
+    hostname: zeppelin
+    environment:
+      ZEPPELIN_PORT: 8890
+    expose:
+      - 8890
+    ports:
+      - 8890:8890

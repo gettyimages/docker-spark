@@ -2,7 +2,7 @@ FROM debian:stretch
 MAINTAINER Getty Images "https://github.com/gettyimages"
 
 RUN apt-get update \
- && apt-get install -y locales \
+ && apt-get install -y locales procps \
  && dpkg-reconfigure -f noninteractive locales \
  && locale-gen C.UTF-8 \
  && /usr/sbin/update-locale LANG=C.UTF-8 \

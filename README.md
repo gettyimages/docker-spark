@@ -13,6 +13,10 @@ To start `spark-shell` with your AWS credentials:
 
     docker run --rm -it -e "AWS_ACCESS_KEY_ID=YOURKEY" -e "AWS_SECRET_ACCESS_KEY=YOURSECRET" -p 4040:4040 gettyimages/spark bin/spark-shell
 
+To start `spark-shell` with your desired AWS_PROFILE from ${HOME}/.aws/credentials:
+
+    docker run --rm -it -e "AWS_PROFILE=YOURPROFILE" -v "${HOME}/.aws":/root/.aws -p 4040:4040 gettyimages/spark bin/spark-shell
+
 To do a thing with Pyspark
 
     echo -e "import pyspark\n\nprint(pyspark.SparkContext().parallelize(range(0, 10)).count())" > count.py

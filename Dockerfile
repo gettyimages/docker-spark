@@ -46,6 +46,8 @@ RUN curl -sL --retry 3 \
   | tar -x -C /usr/ \
  && rm -rf $HADOOP_HOME/share/doc \
  && chown -R root:root $HADOOP_HOME
+COPY conf/hadoop/core-site.xml /tmp/core-site.xml
+RUN cp /tmp/core-site.xml $HADOOP_HOME/etc/hadoop
 
 # SPARK
 ENV SPARK_VERSION 2.4.1

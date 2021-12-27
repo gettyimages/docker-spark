@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 MAINTAINER Getty Images "https://github.com/gettyimages"
 
 RUN apt-get update \
@@ -20,7 +20,8 @@ RUN apt-get update \
  && apt-get install -y curl unzip \
     python3 python3-setuptools \
  && ln -s /usr/bin/python3 /usr/bin/python \
- && easy_install3 pip py4j \
+ && apt-get install -y python3-pip \
+ && pip3 install py4j \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -31,12 +32,12 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 # JAVA
 RUN apt-get update \
- && apt-get install -y openjdk-8-jre \
+ && apt install -y default-jre \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
 # HADOOP
-ENV HADOOP_VERSION 3.0.0
+ENV HADOOP_VERSION 3.3.1
 ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
@@ -48,7 +49,7 @@ RUN curl -sL --retry 3 \
  && chown -R root:root $HADOOP_HOME
 
 # SPARK
-ENV SPARK_VERSION 2.4.1
+ENV SPARK_VERSION 3.2.0
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-${SPARK_VERSION}
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
